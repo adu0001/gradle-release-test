@@ -2,7 +2,7 @@ plugins {
 	java
 	id("org.springframework.boot") version "3.4.2"
 	id("io.spring.dependency-management") version "1.1.7"
-	id("net.researchgate.release") version "3.1.0"
+	id("pl.allegro.tech.build.axion-release") version "1.18.7"
 }
 
 group = "com.example"
@@ -25,31 +25,24 @@ dependencies {
 }
 
 
-release {
-	failOnCommitNeeded = false
-	failOnPublishNeeded = true
-	failOnSnapshotDependencies = true
-	failOnUnversionedFiles = false
-	failOnUpdateNeeded = true
-	revertOnFail = true
-	preCommitText = ""
-	preTagCommitMessage = "[Gradle Release Plugin] - pre tag commit: "
-	tagCommitMessage = "[Gradle Release Plugin] - creating tag: "
-	newVersionCommitMessage = "[Gradle Release Plugin] - new version commit: "
-	tagTemplate = "${version}"
-	versionPropertyFile = "gradle.properties"
-	snapshotSuffix = "-SNAPSHOT"
-	pushReleaseVersionBranch = null
-	//scmAdapters = net.researchgate.release.GitAdapter
+version = scmVersion.version
 
-	git {
-		requireBranch.set("main")
-		pushToRemote.set("origin")
-		pushToBranchPrefix.set("")
-		commitVersionFileOnly.set(false)
-		signTag.set(false)
+scmVersion{
+
+	localOnly.set(true)
+	useHighestVersion.set(true)
+	releaseOnlyOnReleaseBranches.set(true)
+	releaseBranchNames.add("main")
+	versionCreator { versionFromTag, _ -> versionFromTag }
+	tag{
+		prefix.set("elf-dataflow-")
+
 	}
+	repository.type.set("git")
+
 }
+
+
 
 tasks.withType<Test> {
 	useJUnitPlatform()
