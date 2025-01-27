@@ -26,10 +26,10 @@ dependencies {
 
 
 release {
-	failOnCommitNeeded = true
+	failOnCommitNeeded = false
 	failOnPublishNeeded = true
 	failOnSnapshotDependencies = true
-	failOnUnversionedFiles = true
+	failOnUnversionedFiles = false
 	failOnUpdateNeeded = true
 	revertOnFail = true
 	preCommitText = ""
