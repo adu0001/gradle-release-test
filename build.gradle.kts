@@ -24,6 +24,7 @@ dependencies {
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
 }
 
+
 release {
 	failOnCommitNeeded = true
 	failOnPublishNeeded = true
