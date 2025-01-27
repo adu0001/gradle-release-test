@@ -38,7 +38,10 @@ scmVersion{
 		prefix.set("elf-dataflow-")
 
 	}
-	repository.type.set("git")
+	repository{
+		type.set("git")
+		pushTagsOnly.set(true)
+	}
 
 }
 
